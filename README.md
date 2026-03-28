@@ -14,3 +14,23 @@ The framework performs time-step simulations to capture the dynamic behaviour of
 The [GC-DC Microgrid/wiki](https://github.com/speedygonzales4/Optimal-Power-Sharing-in-DC-Grid-Connected-Microgrids-for-Rural-Electrification/wiki/GC%E2%80%90DC-Microgrid-Home) is the primary location for documentation of the system architecture, backend implementation, and integration framework. It provides an overview of the model structure, optimization workflow, and the interaction between core computational modules.
 
 * System Architecture & Implementation
+
+# Scope
+
+This repository is:
+
+* A MATLAB-based backend implementation of a GC-DC microgrid optimal power sharing framework
+* A computational model for DC optimal power flow (OPF) with distribution and converter loss considerations
+* A modular system for analysing power sharing, battery behaviour, and grid interaction
+* A foundation for extending into a full software system with frontend integration
+
+This repository is not:
+
+* A production-ready energy management system
+* A fully validated or field-deployed microgrid control solution
+* A real-time control or embedded implementation
+* A complete software application with a graphical user interface
+
+# Status
+
+Early-stage research and development code. Suitable for academic analysis, experimentation, and further software extension.
