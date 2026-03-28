@@ -36,5 +36,5 @@ Early-stage research and development code. Suitable for academic analysis, exper
 
 ## Authors and Contributors
 
-* Aaron Alves - @speedygonzales4
+* Aaron Alves - [A.Alves](https://github.com/speedygonzales4)
   * Undergraduate student at the University of the West Indies
