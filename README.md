@@ -13,9 +13,8 @@ The framework performs time-step simulations to capture the dynamic behaviour of
 
 The [GC-DC Microgrid/wiki](https://github.com/speedygonzales4/Optimal-Power-Sharing-in-DC-Grid-Connected-Microgrids-for-Rural-Electrification/wiki/GC%E2%80%90DC-Microgrid-Home) is the primary location for documentation of the system architecture, backend implementation, and integration framework. It provides an overview of the model structure, optimization workflow, and the interaction between core computational modules.
 
-* System Architecture & Implementation
-
-# Scope
+* [System Architecture & Implementation](https://github.com/speedygonzales4/Optimal-Power-Sharing-in-DC-Grid-Connected-Microgrids-for-Rural-Electrification/wiki/GC%E2%80%90DC-Microgrid-Tool-Home)
+## Scope
 
 This repository is:
 
@@ -31,6 +30,6 @@ This repository is not:
 * A real-time control or embedded implementation
 * A complete software application with a graphical user interface
 
-# Status
+## Status
 
 Early-stage research and development code. Suitable for academic analysis, experimentation, and further software extension.
