@@ -8,3 +8,9 @@ The framework is designed to optimize power sharing, minimize distribution and c
 The GC-DC Microgrid Optimal Power Sharing Framework operates as a modular backend architecture, where system initialization, input data processing, optimization, and result generation are handled through structured MATLAB functions. A 24-hour optimal power flow problem is solved using a nonlinear solver (fmincon), incorporating constraints such as power balance, voltage limits, and battery state-of-charge dynamics.
 
 The framework performs time-step simulations to capture the dynamic behaviour of the microgrid. At each time step, nodes are classified based on their net power, and optimal dispatch decisions are computed to balance supply and demand. The result is a detailed representation of power sharing, battery operation, and grid interaction over time, with the potential to be extended into a full software system through frontend integration for user interaction and visualization.
+
+### System Architecture Documentation
+
+The [GC-DC Microgrid/wiki](url) is the primary location for documentation of the system architecture, backend implementation, and integration framework. It provides an overview of the model structure, optimization workflow, and the interaction between core computational modules.
+
+System Architecture & Implementation
