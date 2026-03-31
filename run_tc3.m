@@ -67,33 +67,17 @@ generate_tables(tc_name, sys, RES, tables_outdir, hour_idx);
 end
 
 function [pv_prof, load_prof, sys] = get_profiles_from_csv_or_default(sys, T)
-    pv_prof   = [];
-    load_prof = [];
-
-    if exist('read_pv_and_load_csv','file') == 2
-        try
-            data = read_pv_and_load_csv( ...
-                '1002919_27.05_18.02_tmy-2022.csv', ...
-                '2 - Microgrid_Load_Profile_Explorer.xlsx', ...
-                2022, 8, 1, 30, sys.load_sheet);
-
-            pv_prof   = data.PV_profile(:).';
-            load_prof = data.Load_profile(:).';
-        catch ME
-            warning('%s', sprintf(['[run_tc3] Profile file load failed. ', ...
-                'Using zero PV fallback and default flat load fallback.\n%s'], ME.message));
-        end
-    else
-        warning('[run_tc3] read_pv_and_load_csv.m not found. Using fallback profiles.');
+    if exist('read_pv_and_load_csv','file') ~= 2
+        error('read_pv_and_load_csv.m not found. Cannot proceed without input data.');
     end
 
-    if isempty(pv_prof)
-        pv_prof = zeros(1,T);
-    end
+    data = read_pv_and_load_csv( ...
+        '1002919_27.05_18.02_tmy-2022.csv', ...
+        '2 - Microgrid_Load_Profile_Explorer.xlsx', ...
+        2022, 8, 1, 30, sys.load_sheet);
 
-    if isempty(load_prof)
-        load_prof = ones(1,T);
-    end
+    pv_prof   = data.PV_profile(:).';
+    load_prof = data.Load_profile(:).';
 
     if numel(pv_prof) ~= T
         pv_prof = reshape_to_T_local(pv_prof, T);
@@ -119,7 +103,7 @@ end
 function v = reshape_to_T_local(raw, T)
     raw = raw(:).';
     if isempty(raw)
-        v = zeros(1,T);
+        error('Profile data is empty and no fallback is enabled.');
     elseif numel(raw) > T
         v = raw(1:T);
     elseif numel(raw) < T
