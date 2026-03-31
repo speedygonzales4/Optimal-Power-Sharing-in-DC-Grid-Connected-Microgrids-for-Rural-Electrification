@@ -67,34 +67,17 @@ generate_tables(tc_name, sys, RES, tables_outdir, hour_idx);
 end
 
 function [pv_prof, load_prof, sys] = get_profiles_from_csv_or_default(sys, T)
-    pv_prof   = [];
-    load_prof = [];
-
-    if exist('read_pv_and_load_csv','file') == 2
-        try
-            data = read_pv_and_load_csv( ...
-                '1002919_27.05_18.02_tmy-2022.csv', ...
-                '2 - Microgrid_Load_Profile_Explorer.xlsx', ...
-                2022, 8, 1, 30, sys.load_sheet);
-
-            pv_prof   = data.PV_profile(:).';
-            load_prof = data.Load_profile(:).';
-            sys.pv_profile   = pv_prof;
-            sys.load_profile = load_prof;
-        catch ME
-            warning('%s', sprintf('[run_tc1] Profile file load failed. Falling back to generated profiles.\n%s', ME.message));
-        end
+    if exist('read_pv_and_load_csv','file') ~= 2
+        error('read_pv_and_load_csv.m not found. Cannot proceed without input data.');
     end
 
-    if isempty(pv_prof)
-        pv_prof = generate_pv_profile(T);
-    end
-    if isempty(load_prof)
-        load_prof = generate_load_profile(T);
-    end
+    data = read_pv_and_load_csv( ...
+        '1002919_27.05_18.02_tmy-2022.csv', ...
+        '2 - Microgrid_Load_Profile_Explorer.xlsx', ...
+        2022, 8, 1, 30, sys.load_sheet);
 
-    pv_prof   = pv_prof(:).';
-    load_prof = load_prof(:).';
+    pv_prof   = data.PV_profile(:).';
+    load_prof = data.Load_profile(:).';
 
     if numel(pv_prof) ~= T
         pv_prof = reshape_to_T_local(pv_prof, T);
