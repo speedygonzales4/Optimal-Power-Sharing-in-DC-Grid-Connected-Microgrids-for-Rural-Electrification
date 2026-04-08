@@ -1,5 +1,6 @@
 function idx = opf_index(N, E, use_grid)
-%OPF_INDEX  Creates a consistent packing layout for decision vector x (OPF-2 only)
+% Defines the index mapping used to pack and unpack the OPF decision vector x. It assigns contiguous index ranges for all decision
+% variables so the same layout is used consistently across the solver.
 
 if nargin < 3
     use_grid = false;
