@@ -1,5 +1,7 @@
 function run_tc3(grid_connected)
 %RUN_TC3  Runs OPF-2 for the 20-bus clustered-ring test case
+% It sets the operating mode, applies the PV availability scaling, builds the test system, solves the OPF, plots results, prints a summary,
+% and generates a snapshot table for a user-selected hour
 
 clc; close all;
 
