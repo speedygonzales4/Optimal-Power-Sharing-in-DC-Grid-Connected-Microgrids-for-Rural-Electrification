@@ -1,5 +1,7 @@
 function run_tc1(grid_connected)
 %RUN_TC1  Runs OPF-2 for TC1 (7-bus radial)
+% It sets the operating mode, applies the PV availability scaling, builds the test system, solves the OPF, plots results, prints a summary,
+% and generates a snapshot table for a user-selected hour
 
 clc; close all;
 
