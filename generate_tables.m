@@ -23,7 +23,10 @@ fprintf("\nSaved table to: %s\n", outdir);
 
 end
 
+
 function T = build_bus_table(sys, RES, hour_idx)
+% Assembles the per-bus snapshot results table for the requested hour by extracting bus-level variables from RES, converting
+% voltage magnitude from squared values, formatting SOC, and computing converter efficiency strings
 
 nb = get_nbus(sys, RES);
 
@@ -51,6 +54,8 @@ T = table(BusNo, Pi(:), PBi(:), SOC(:), V(:), eta_str(:), ...
 end
 
 function eta_str = compute_eta_string(sys, Pi, Pconv)
+% Computes per-bus converter efficiency as formatted strings
+
 nb = numel(Pi);
 eta_str = strings(nb,1);
 
@@ -104,6 +109,8 @@ end
 end
 
 function pretty_print_table(T, title_str)
+% Displays the results table in the command window in a cleaner format by zeroing near-zero Pi values and rounding all numeric columns for easier reading
+
 fprintf("\n==================== %s ====================\n", title_str);
 
 Tp = T;
@@ -123,6 +130,9 @@ disp(Tp);
 end
 
 function nb = get_nbus(sys, RES)
+% Determines the number of buses in the system using metadata from sys when available, otherwise infers it from the dimensions of common
+% result fields stored in RES
+
 if isstruct(sys)
     if isfield(sys,'N') && ~isempty(sys.N)
         nb = sys.N;
